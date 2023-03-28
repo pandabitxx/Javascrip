@@ -9,6 +9,9 @@
 </head>
   <body>
     <div class="container">
+
+      <!-- == Fin Carrito  == -->
+            
       <div id="cart-container" class="hidden">
         <h2>Carrito de compras</h2>
         <table id="tabla">
@@ -27,14 +30,22 @@
         <button id="empty-cart">Vaciar carrito</button>
         <button id="checkout">Realizar pago</button>
       </div>
-      <!-- ==== -->
+
+      <!-- == Fin Carrito  == -->
+
+      <!-- == Productos == -->
+
       <div class="row mt-5 text-center">
         <div id="products" class="col">
           <h2>Productos disponibles</h2>
+          <div>
+            <label for="search">Buscar por nombre:</label>
+            <input type="text" id="search" onkeyup="filterProducts()">
+          </div>      
         </div>
       </div>
-      <div class="row">
-        <div class="col mt-3 text-center">
+      <div class="row" id="productList">
+        <div  class="col mt-3 text-center">
           <h3>Mars</h3>
           <img src="img/p1.png">
           <p>Precio: $10.00</p>
@@ -53,9 +64,15 @@
           <button class="add-to-cart" data-id="3">Agregar al carrito</button>
         </div>
       </div>
+
+      <!-- == Fin Productos == -->
+
+
     </div>
-    <!-- <button id="show-cart-button">Mostrar carrito</button> -->
     <img src="/img/carrito.png" id="show-cart-button" alt="carrito">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="Javascript/main.js"></script>
   </body>
 </html>

@@ -3,15 +3,38 @@ const products = [
     { id: 1, name: 'Mars', price: 10.00 },
     { id: 2, name: 'Neptune', price: 20.00 },
     { id: 3, name: 'Earth', price: 30.00 },
-    { id: 4, name: 'Earth', price: 30.00 },
-    { id: 5, name: 'Earth', price: 30.00 },
-    { id: 6, name: 'Earth', price: 30.00 },
 ];
+
+
+function filterProducts() {
+  // Obtener el valor de búsqueda del campo de entrada
+  let searchText = document.getElementById("search").value.toLowerCase();
+  
+  // Obtener la lista de productos
+  let productList = document.getElementById("productList");
+  
+  // Obtener todos los elementos <li> de la lista de productos
+  let products = productList.getElementsByClassName("col");
+  
+  // Recorrer todos los productos y ocultar los que no coinciden con la búsqueda
+  for (let i = 0; i < products.length; i++) {
+    let product = products[i];
+    let name = product.getElementsByTagName("h3")[0].textContent.toLowerCase();
+
+    // Si el nombre del producto contiene el valor de búsqueda, mostrarlo
+    if (name.indexOf(searchText) > -1) {
+    product.style.display = "";
+    }
+    // De lo contrario, ocultarlo
+    else {
+    product.style.display = "none";
+    }
+  }
+}
+
 
 // Lista de elementos del carrito de compras
 let cartItems = [];
-
-let cartCount = -1;
 
 // Función para agregar un producto al carrito de compras
 function addToCart(productId) {
@@ -23,7 +46,7 @@ function addToCart(productId) {
   }
   
   // Buscar el elemento en el carrito de compras
-  let cartItem = cartItems.find(item => item.product.id == productId);
+  let cartItem = cartItems.find(item  => item.product.id == productId);
   if (!cartItem) {
     // Si el elemento no existe en el carrito, crear uno nuevo
   cartItem = {
@@ -146,4 +169,5 @@ function toggleCart() {
 // Evento para mostrar u ocultar el carrito cuando se hace clic en el botón correspondiente
 const showCartButton = document.getElementById('show-cart-button');
 showCartButton.addEventListener('click', toggleCart);
+
 
