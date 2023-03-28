@@ -2,7 +2,10 @@
 const products = [
     { id: 1, name: 'Mars', price: 10.00 },
     { id: 2, name: 'Neptune', price: 20.00 },
-    { id: 3, name: 'Earth', price: 30.00 }
+    { id: 3, name: 'Earth', price: 30.00 },
+    { id: 4, name: 'Earth', price: 30.00 },
+    { id: 5, name: 'Earth', price: 30.00 },
+    { id: 6, name: 'Earth', price: 30.00 },
 ];
 
 // Lista de elementos del carrito de compras
