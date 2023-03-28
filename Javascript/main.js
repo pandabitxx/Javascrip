@@ -3,9 +3,15 @@ const products = [
     { id: 1, name: 'Mars', price: 10.00 },
     { id: 2, name: 'Neptune', price: 20.00 },
     { id: 3, name: 'Earth', price: 30.00 },
+    { id: 4, name: 'Jupyter', price: 40.00 },
+    { id: 5, name: 'Purpura Minor', price: 50.00 },
+    { id: 6, name: 'Rosalynia', price: 60.00 },
+    { id: 7, name: 'Grisarctica', price: 70.00 },
+    { id: 8, name: 'Verdius', price: 80.00 },
+    { id: 9, name: 'Nocturnia', price: 90.00 },
 ];
 
-
+// Filtro por nombre del producto
 function filterProducts() {
   // Obtener el valor de búsqueda del campo de entrada
   let searchText = document.getElementById("search").value.toLowerCase();
@@ -133,6 +139,7 @@ function updateCart() {
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Eliminar';
     removeButton.addEventListener('click', () => removeFromCart(product.id));
+    removeButton.classList.add('btn', 'btn-danger');
     removeButtonCell.appendChild(removeButton);
     row.appendChild(removeButtonCell);
     
