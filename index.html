@@ -9,26 +9,25 @@
 </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div id="cart" class="col">
-          <h2>Carrito de compras</h2>
-            <table id="tabla">
-              <thead>
-                <tr>
-                  <th>Producto</th>
-                  <th>Precio</th>
-                  <th>Cantidad</th>
-                  <th>Subtotal</th>
-                  <th>Eliminar</th>
-                </tr>
-              </thead>
-            <tbody id="cart-items"></tbody>
-          </table>
-          <p>Total: <span id="cart-total">$0.00</span></p>
-          <button id="empty-cart">Vaciar carrito</button>
-          <button id="checkout">Realizar pago</button>
-        </div>
+      <div id="cart-container" class="hidden">
+        <h2>Carrito de compras</h2>
+        <table id="tabla">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items"></tbody>
+        </table>
+        <p>Total: <span id="cart-total">$0.00</span></p>
+        <button id="empty-cart">Vaciar carrito</button>
+        <button id="checkout">Realizar pago</button>
       </div>
+      <!-- ==== -->
       <div class="row mt-5 text-center">
         <div id="products" class="col">
           <h2>Productos disponibles</h2>
@@ -55,6 +54,8 @@
         </div>
       </div>
     </div>
+    <!-- <button id="show-cart-button">Mostrar carrito</button> -->
+    <img src="/img/carrito.png" id="show-cart-button" alt="carrito">
     <script src="Javascript/main.js"></script>
   </body>
 </html>

@@ -11,57 +11,65 @@ const products = [
 // Lista de elementos del carrito de compras
 let cartItems = [];
 
+let cartCount = -1;
+
 // Función para agregar un producto al carrito de compras
 function addToCart(productId) {
-    // Buscar el producto en la lista de productos disponibles
-    const product = products.find(p => p.id == productId);
-    if (!product) {
-    console.error(`Producto con ID ${productId} no encontrado`);
-    return;
-    }
-    
-    // Buscar el elemento en el carrito de compras
-    let cartItem = cartItems.find(item => item.product.id == productId);
-    if (!cartItem) {
-      // Si el elemento no existe en el carrito, crear uno nuevo
-    cartItem = {
-        product: product,
-        quantity: 0,
-        subtotal: 0.00
-    };
-    cartItems.push(cartItem);
-    }
-    
-    // Incrementar la cantidad y el subtotal del elemento en el carrito
-    cartItem.quantity++;
-    cartItem.subtotal = cartItem.quantity * cartItem.product.price;
-    
-    // Actualizar la tabla de elementos del carrito y el total
-    updateCart();
-    }
+  // Buscar el producto en la lista de productos disponibles
+  const product = products.find(p => p.id == productId);
+  if (!product) {
+  console.error(`Producto con ID ${productId} no encontrado`);
+  return;
+  }
+  
+  // Buscar el elemento en el carrito de compras
+  let cartItem = cartItems.find(item => item.product.id == productId);
+  if (!cartItem) {
+    // Si el elemento no existe en el carrito, crear uno nuevo
+  cartItem = {
+      product: product,
+      quantity: 0,
+      subtotal: 0.00
+  };
+  cartItems.push(cartItem);
+  }
+  
+  // Incrementar la cantidad y el subtotal del elemento en el carrito
+  cartItem.quantity++;
+  cartItem.subtotal = cartItem.quantity * cartItem.product.price;
+  
+  // Actualizar la tabla de elementos del carrito y el total
+  updateCart();
+
+  // incrementar el número de productos en el carrito
+  cartCount++;
+  // actualizar el contenido del elemento HTML del número de productos en el carrito
+  document.querySelector('.cart-count').textContent = cartCount;
+}
 
 // Función para eliminar un producto del carrito de compras
-    function removeFromCart(productId) {
-    // Buscar el elemento en el carrito de compras
-    const cartItemIndex = cartItems.findIndex(item => item.product.id == productId);
-    if (cartItemIndex < 0) {
-        return;
-    }
+function removeFromCart(productId) {
+  // Buscar el elemento en el carrito de compras
+  const cartItemIndex = cartItems.findIndex(item => item.product.id == productId);
+  if (cartItemIndex < 0) {
+      return;
+  }
 
-    // Eliminar el elemento del carrito
-    cartItems.splice(cartItemIndex, 1);
-    
-      // Actualizar la tabla de elementos del carrito y el total
-    updateCart();
-    }
-    
-    // Función para vaciar el carrito de compras
-    function emptyCart() {
-    cartItems = [];
-    updateCart();
-    }
-    
-    
+  // Eliminar el elemento del carrito
+  cartItems.splice(cartItemIndex, 1);
+  
+    // Actualizar la tabla de elementos del carrito y el total
+  updateCart();
+  }
+  
+  // Función para vaciar el carrito de compras
+  function emptyCart() {
+  cartItems = [];
+  updateCart();
+
+}
+  
+  
 
 
 // Función para actualizar la tabla de elementos del carrito y el total
@@ -115,16 +123,27 @@ function updateCart() {
   totalElement.textContent = `$${total.toFixed(2)}`;
 }
 
-    // Evento para agregar productos al carrito cuando se hace clic en el botón correspondiente
-    const addToCartButtons = document.getElementsByClassName('add-to-cart');
-    for (const button of addToCartButtons) {
-    button.addEventListener('click', () => addToCart(button.dataset.id));
-    }
-    
-    // Evento para vaciar el carrito cuando se hace clic en el botón correspondiente
-    const emptyCartButton = document.getElementById('empty-cart');
-    emptyCartButton.addEventListener('click', emptyCart);
-    
-    // Evento para realizar el pago cuando se hace clic en el botón correspondiente
-    const checkoutButton = document.getElementById('checkout');
-    checkoutButton.addEventListener('click', () => alert('Pago realizado con éxito'));
+  // Evento para agregar productos al carrito cuando se hace clic en el botón correspondiente
+  const addToCartButtons = document.getElementsByClassName('add-to-cart');
+  for (const button of addToCartButtons) {
+  button.addEventListener('click', () => addToCart(button.dataset.id));
+  }
+  
+  // Evento para vaciar el carrito cuando se hace clic en el botón correspondiente
+  const emptyCartButton = document.getElementById('empty-cart');
+  emptyCartButton.addEventListener('click', emptyCart);
+  
+  // Evento para realizar el pago cuando se hace clic en el botón correspondiente
+  const checkoutButton = document.getElementById('checkout');
+  checkoutButton.addEventListener('click', () => alert('Pago realizado con éxito'));
+
+  // Función para mostrar u ocultar el carrito
+function toggleCart() {
+  const cartContainer = document.getElementById('cart-container');
+  cartContainer.classList.toggle('hidden');
+}
+
+// Evento para mostrar u ocultar el carrito cuando se hace clic en el botón correspondiente
+const showCartButton = document.getElementById('show-cart-button');
+showCartButton.addEventListener('click', toggleCart);
+
