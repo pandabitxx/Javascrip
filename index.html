@@ -9,9 +9,7 @@
   </head>
   <body>
     <div class="container">
-
-      <!-- == Fin Carrito  == -->
-            
+      <!-- ==  Carrito  == -->   
       <div id="cart-container" class="hidden">
         <h2>Carrito de compras</h2>
         <table id="tabla">
@@ -41,12 +39,10 @@
         </div>
       </div>
 
-      <div class="row mt-3 ">
-
-        <div class="mb-3">
-          <label for="search" class="form-label">¿Que estas buscando?</label>
-          <input type="text" class="form-control" id="search" aria-describedby="emailHelp" onkeyup="filterProducts()">
-        </div>
+      <div class="mb-3">
+        <label for="search" class="form-label">¿Que estas buscando?</label>
+        <input type="text" class="form-control" id="search" aria-describedby="emailHelp" onkeyup="filterProducts()">
+      </div>
 
       <div id="productList">
         <div class="row">
@@ -108,8 +104,56 @@
           </div>
         </div>
       </div>
+      
+      <hr class="hr mt-5">
+
+      <div class="row mt-5">
+        <div class="col text-center">
+          <h1>¿No encontraste lo que necesitabas?</h1>
+          <h2>Cuéntanos como podemos ayudarte</h2>
+        </div>
+      </div>
+      
+      <main id="contacto-formulario">
+        <div class="container fuente" data-aos="fade-up">
+          <div class="row mb-5">
+            <div class="col-md-6 offset-md-3 contact rounded-5">
+              <form>
+                <div class="mb-3">
+                  <label for="exampleInputName1" class="form-label p">Correo electrónico</label>
+                  <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label p">Numero de contacto</label>
+                  <input type="email" class="form-control" id="exampleInputNumber" aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                  <label for="disabledSelect" class="form-label p">¿Que estabas buscando?</label>
+                  <select id="disabledSelect" class="form-select">
+                    <option class="p" value="" disabled selected>Selecciona Planeta</option>
+                    <option class="p" value="Rosalynia">Rosalynia </option>
+                    <option class="p" value="Jupyter">Jupyter</option>
+                    <option class="p" value="other">Otro</option>
+                  </select>
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label p" for="exampleCheck1">Acepto los términos y condiciones</label>
+                </div>
+                <button type="submit" class="btn btn-primary" data-aos="fade-left">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
 
       <!-- == Fin Productos == -->
+
+
+      <div class="arrow-container">
+        <a href="#" class="arrow"></a>
+      </div>
 
     </div>
     <img src="/img/carrito.png" id="show-cart-button" alt="carrito">

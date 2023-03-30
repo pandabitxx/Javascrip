@@ -153,6 +153,12 @@ function updateCart() {
   totalElement.textContent = `$${total.toFixed(2)}`;
 }
 
+
+
+
+
+
+
   // Evento para agregar productos al carrito cuando se hace clic en el botón correspondiente
   const addToCartButtons = document.getElementsByClassName('add-to-cart');
   for (const button of addToCartButtons) {
@@ -178,3 +184,40 @@ const showCartButton = document.getElementById('show-cart-button');
 showCartButton.addEventListener('click', toggleCart);
 
 
+
+//JSON y local Storage
+
+const emailInput = document.getElementById("exampleInputEmail");
+const phoneInput = document.getElementById("exampleInputNumber");
+const planetSelect = document.getElementById("disabledSelect");
+const termsCheckbox = document.getElementById("exampleCheck1");
+const submitButton = document.querySelector("button[type='submit']");
+
+submitButton.addEventListener("click", function(event) {
+  event.preventDefault(); // Prevenir comportamiento por defecto de enviar el formulario
+
+  // Almacenar información en Storage
+  localStorage.setItem("email", emailInput.value);
+  localStorage.setItem("phone", phoneInput.value);
+  localStorage.setItem("planet", planetSelect.value);
+  localStorage.setItem("termsAccepted", termsCheckbox.checked);
+
+  // Mostrar información en consola
+  console.log("Email: " + localStorage.getItem("email"));
+  console.log("Phone: " + localStorage.getItem("phone"));
+  console.log("Planet: " + localStorage.getItem("planet"));
+  console.log("Terms accepted: " + localStorage.getItem("termsAccepted"));
+});
+
+let usuario = {
+  email: localStorage.getItem("email"),
+  phone: localStorage.getItem("phone"),
+  planet: localStorage.getItem("planet"),
+  termsAccepted: localStorage.getItem("termsAccepted") === "true"
+};
+
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+usuarios.push(usuario);
+
+let usuariosJSON = JSON.stringify(usuarios);
+localStorage.setItem("usuarios", usuariosJSON);

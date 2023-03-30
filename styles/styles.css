@@ -1,9 +1,5 @@
 body {
-    background-color: rebeccapurple ;
-}
-
-#productList .col {
-    margin-top: 56;
+    background-color: #000000;
 }
 
 .container {
@@ -13,9 +9,6 @@ th, td {
     padding: 5px 20px;
 }
 
-.h3 {
-    color: rebeccapurple;
-}
 
 #show-cart-button {
     position: fixed;
