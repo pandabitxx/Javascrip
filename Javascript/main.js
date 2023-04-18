@@ -50,9 +50,9 @@ function filterProducts() {
   }
 }
 
-
 // Lista de elementos del carrito de compras
 let cartItems = [];
+
 
 // Función para agregar un producto al carrito de compras
 function addToCart(productId) {
