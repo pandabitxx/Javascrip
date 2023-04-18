@@ -1,15 +1,27 @@
 // Lista de productos disponibles
-const products = [
-    { id: 1, name: 'Mars', price: 10.00 },
-    { id: 2, name: 'Neptune', price: 20.00 },
-    { id: 3, name: 'Earth', price: 30.00 },
-    { id: 4, name: 'Jupyter', price: 40.00 },
-    { id: 5, name: 'Purpura Minor', price: 50.00 },
-    { id: 6, name: 'Rosalynia', price: 60.00 },
-    { id: 7, name: 'Grisarctica', price: 70.00 },
-    { id: 8, name: 'Verdius', price: 80.00 },
-    { id: 9, name: 'Nocturnia', price: 90.00 },
-];
+// const products = [
+//     { id: 1, name: 'Mars', price: 10.00 },
+//     { id: 2, name: 'Neptune', price: 20.00 },
+//     { id: 3, name: 'Earth', price: 30.00 },
+//     { id: 4, name: 'Jupyter', price: 40.00 },
+//     { id: 5, name: 'Purpura Minor', price: 50.00 },
+//     { id: 6, name: 'Rosalynia', price: 60.00 },
+//     { id: 7, name: 'Grisarctica', price: 70.00 },
+//     { id: 8, name: 'Verdius', price: 80.00 },
+//     { id: 9, name: 'Nocturnia', price: 90.00 },
+// ];
+
+// Lista de productos disponibles 
+
+fetch('products.json')
+  .then(response => response.json())
+  .then(data => {
+    // usa la lista de productos en la variable "data"
+    const products = data;
+    console.log(products);
+  });
+
+
 
 // Filtro por nombre del producto
 function filterProducts() {
@@ -44,36 +56,37 @@ let cartItems = [];
 
 // Función para agregar un producto al carrito de compras
 function addToCart(productId) {
-  // Buscar el producto en la lista de productos disponibles
-  const product = products.find(p => p.id == productId);
-  if (!product) {
-  console.error(`Producto con ID ${productId} no encontrado`);
-  return;
-  }
-  
-  // Buscar el elemento en el carrito de compras
-  let cartItem = cartItems.find(item  => item.product.id == productId);
-  if (!cartItem) {
-    // Si el elemento no existe en el carrito, crear uno nuevo
-  cartItem = {
-      product: product,
-      quantity: 0,
-      subtotal: 0.00
-  };
-  cartItems.push(cartItem);
-  }
-  
-  // Incrementar la cantidad y el subtotal del elemento en el carrito
-  cartItem.quantity++;
-  cartItem.subtotal = cartItem.quantity * cartItem.product.price;
-  
-  // Actualizar la tabla de elementos del carrito y el total
-  updateCart();
+  // Obtener la lista de productos desde el archivo JSON local
+  fetch('products.json')
+    .then(response => response.json())
+    .then(data => {
+      // Buscar el producto en la lista de productos disponibles
+      const product = data.find(p => p.id == productId);
+      if (!product) {
+        // Manejar el error apropiadamente
+        console.error(`Producto con ID ${productId} no encontrado`);
+        return;
+      }
 
-  // incrementar el número de productos en el carrito
-  cartCount++;
-  // actualizar el contenido del elemento HTML del número de productos en el carrito
-  document.querySelector('.cart-count').textContent = cartCount;
+      // Buscar el elemento en el carrito de compras
+      let cartItem = cartItems.find(item => item.product.id == productId);
+      if (!cartItem) {
+        // Si el elemento no existe en el carrito, crear uno nuevo
+        cartItem = {
+          product: product,
+          quantity: 0,
+          subtotal: 0.00
+        };
+        cartItems.push(cartItem);
+      }
+
+      // Incrementar la cantidad y el subtotal del elemento en el carrito
+      cartItem.quantity++;
+      cartItem.subtotal = cartItem.quantity * cartItem.product.price;
+
+      // Actualizar la tabla de elementos del carrito y el total
+      updateCart();
+    });
 }
 
 // Función para eliminar un producto del carrito de compras
